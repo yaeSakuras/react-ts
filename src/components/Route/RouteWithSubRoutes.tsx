@@ -1,16 +1,24 @@
-import React from "react";
-import { Route,Redirect } from "react-router-dom";
+import React, {LazyExoticComponent} from "react";
+import {Route, Redirect} from "react-router-dom";
 
-interface Iprops {
-    routes:Array<any>
+
+interface RouteType {
+    path: string;
+    component: LazyExoticComponent<any>;
+    children?: RouteType[];
+    to?: string;
 }
 
-const RouteRender = (route:any) => {
-    const {path, children = []} = route;
+interface Iprops {
+    routes: RouteType[]
+}
+
+const RouteRender: React.FC<RouteType> = route => {
+    const {path, children = [], to = ''} = route;
     if (path === "/") {
         return (
             <Route path="/" exact render={() => (
-                <Redirect to={route.to}/>
+                <Redirect to={to}/>
             )}/>
         )
     } else {

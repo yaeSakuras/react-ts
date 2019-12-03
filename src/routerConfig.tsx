@@ -1,22 +1,23 @@
-import React,{LazyExoticComponent} from "react";
-const Home = React.lazy(()=> import('./views/Home'));
-const JsonView = React.lazy(()=> import('./views/JsonView'));
+import React, {LazyExoticComponent} from "react";
 
-export interface RouteType {
+const Home = React.lazy(() => import('./views/Home'));
+const JsonView = React.lazy(() => import('./views/JsonView'));
+
+interface RouteType {
     path: string;
     component: LazyExoticComponent<any>;
     children?: RouteType[];
-    to?:string;
+    to?: string;
 }
 
-const routes:RouteType[] = [
+const routes: RouteType[] = [
     {
-        path:'/home',
-        component:Home
+        path: '/home',
+        component: Home,
     },
     {
-        path:'/jsonview',
-        component:JsonView
+        path: '/jsonview',
+        component: JsonView
     },
 ];
 
