@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Suspense} from 'react';
+import { HashRouter,Switch,Link } from "react-router-dom";
+
+import RouteLoading from './components/Route/RouteLoading';
+import RouteWithSubRoutes from './components/Route/RouteWithSubRoutes';
+import routes from './routerConfig';
 
 const App: React.FC = () => {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          hello world
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <HashRouter>
+            <ul>
+                <li>
+                    <Link to="/home">Tacos</Link>
+                </li>
+                <li>
+                    <Link to="/jsonview">Sandwiches</Link>
+                </li>
+            </ul>
+            <Suspense fallback={<RouteLoading />}>
+                <Switch>
+                    <RouteWithSubRoutes routes={routes}/>
+                </Switch>
+            </Suspense>
+        </HashRouter>
+    );
 }
 
 export default App;
