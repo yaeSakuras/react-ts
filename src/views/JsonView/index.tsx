@@ -1,8 +1,26 @@
 import React from 'react';
+import ReactJson from "react-json-view";
+import Alpha from "../../layout/Alpha";
+
+const json = {
+    a: 1
+};
 
 const JsonView: React.FC = () => {
+
+    const renderInput = () => {
+        return (
+            <input type="text"/>
+        )
+    };
+
     return (
-        <div>JsonView</div>
+        <>
+            <Alpha
+                title="json"
+                right={renderInput()}
+                left={<ReactJson displayDataTypes={false} src={json}/>}/>
+        </>
     );
 };
 
