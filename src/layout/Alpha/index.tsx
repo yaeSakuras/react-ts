@@ -9,7 +9,7 @@ interface Iprops {
 const Alpha: React.FC<Iprops> = props => {
     const {title, right, left} = props;
     return (
-        <div className="layout-grid">
+        <div className="layout-alpha layout-grid">
             <div className="layout-hader">{title}</div>
             <div className="layout-left">{right}</div>
             <div className="layout-right">{left}</div>

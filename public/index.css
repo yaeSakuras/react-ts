@@ -42,15 +42,54 @@ pre {
 .layout-grid{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 3.5rem calc(100vh - 3.5rem);
-    grid-template-areas: "header header" "left right"
+    grid-template-rows: 3rem calc(100vh - 3rem - 1px);
+    grid-template-areas: "header header" "left right";
+    grid-gap: 1px 1px;
+    background-color: #eaecef;
+}
+.layout-hader,
+.layout-left,
+.layout-right{
+    background-color: #fff;
+}
+.layout-left,
+.layout-right{
+    padding: 1rem;
 }
 .layout-hader{
     grid-area: header;
+    font-weight: 600;
+    line-height: 3rem;
+    padding: 0 1rem;
+    color: #2c3e50;
 }
 .layout-left{
     grid-area:left;
 }
 .layout-right{
     grid-area:right;
+}
+.form-textarea{
+    resize: none;
+    outline: 0;
+    width: 100%;
+    overflow: auto;
+    word-break: break-all;
+    vertical-align: top;
+    padding: 0.6rem 0.8rem;
+    line-height: 1.4rem;
+    border-radius: 4px;
+    border: 1px solid #d0d0d5;
+    box-sizing: border-box;
+    background-color: #fff;
+    transition: border-color .15s,background-color .15s;
+}
+.form-textarea:focus{
+    color: #2c3e50;
+    border-color: #2486ff;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(36,134,255,.6);
+}
+.layout-alpha .form-textarea,
+.layout-alpha .z-scroll{
+    height: calc(100vh - 5rem - 1px);
 }
