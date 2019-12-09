@@ -17,7 +17,7 @@ const JsonView: React.FC = () => {
     return (
         <>
             <Alpha
-                title="json"
+                title="json转换工具"
                 right={renderInput()}
                 left={<ReactJson displayDataTypes={false} src={json}/>}/>
         </>
