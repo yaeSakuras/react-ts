@@ -14,6 +14,6 @@ const App: React.FC = () => {
             </Suspense>
         </HashRouter>
     );
-}
+};
 
 export default App;
