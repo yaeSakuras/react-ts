@@ -2,7 +2,7 @@ import React from "react";
 
 const RouteLoading: React.FC = () => {
   return (
-      <div>loading</div>
+      <div>loading!!!</div>
   )
 };
 
