@@ -3,7 +3,8 @@ import ReactJson from "react-json-view";
 import Alpha from "../../layout/Alpha";
 
 const json = {
-    a: 1
+    a: 1,
+    b: 2
 };
 
 const JsonView: React.FC = () => {
