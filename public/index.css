@@ -73,7 +73,6 @@ pre {
     resize: none;
     outline: 0;
     width: 100%;
-    overflow: auto;
     word-break: break-all;
     vertical-align: top;
     padding: 0.6rem 0.8rem;
@@ -92,4 +91,5 @@ pre {
 .layout-alpha .form-textarea,
 .layout-alpha .z-scroll{
     height: calc(100vh - 5rem - 1px);
+    overflow: auto;
 }
