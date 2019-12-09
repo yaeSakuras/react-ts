@@ -4,6 +4,7 @@ import {Route, Redirect} from "react-router-dom";
 
 interface RouteType {
     path: string;
+    title: string;
     component: LazyExoticComponent<any>;
     children?: RouteType[];
     to?: string;
@@ -14,7 +15,8 @@ interface Iprops {
 }
 
 const RouteRender: React.FC<RouteType> = route => {
-    const {path, children = [], to = ''} = route;
+    const {path,title, children = [], to = ''} = route;
+    document.title = title ? title : 'yaeSakura';
     if (path === "/") {
         return (
             <Route path="/" exact render={() => (
