@@ -3,17 +3,21 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 import {docco} from 'react-syntax-highlighter/dist/esm/styles/hljs';
 import Alpha from "../../layout/Alpha";
 
-function queryStrToObj(str: string) {
-    let obj: any = {};
-    for (let [key, value] of (new URLSearchParams(str).entries())) {
-        obj[key] = value;
-    }
-    return obj;
+function objectToStr(obj:object){
+    return Object.entries(obj).map(([k, v]) => k + '=' + encodeURIComponent(v)).join('&');
 }
 
-const UrlStrToObj: React.FC = () => {
+const ObjectToStr: React.FC = () => {
 
-    const [text, setText] = useState('https://www.google.com/search?q=react&oq=react&aqs=chrome..69i57j35i39j69i60l5j69i65.1835j1j7&sourceid=chrome&ie=UTF-8');
+    const str = JSON.stringify({
+        "https://www.google.com/search?q": "react",
+        "oq": "react",
+        "aqs": "chrome..69i57j35i39j69i60l5j69i65.1835j1j7",
+        "sourceid": "chrome",
+        "ie": "UTF-8"
+    },null,2);
+
+    const [text, setText] = useState(str);
 
     const onChangeText = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setText(e.target.value);
@@ -28,7 +32,7 @@ const UrlStrToObj: React.FC = () => {
     const renderContent = () => {
         let str = '';
         try {
-            str = JSON.stringify(queryStrToObj(text), null, 2);
+            str = objectToStr(JSON.parse(text));
         } catch (e) {
             console.log(e);
         }
@@ -44,11 +48,11 @@ const UrlStrToObj: React.FC = () => {
     return (
         <>
             <Alpha
-                title="url 查询字符串解析成对象"
+                title="obejct 对象转换成查询字符串"
                 right={renderInput()}
                 left={renderContent()}/>
         </>
     );
 };
 
-export default UrlStrToObj;
+export default ObjectToStr;
