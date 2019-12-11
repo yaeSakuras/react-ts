@@ -16,7 +16,6 @@ interface Iprops {
 
 const RouteRender: React.FC<RouteType> = route => {
     const {path,title, children = [], to = ''} = route;
-    document.title = title ? title : 'yaeSakura';
     if (path === "/") {
         return (
             <Route path="/" exact render={() => (
@@ -25,9 +24,10 @@ const RouteRender: React.FC<RouteType> = route => {
         )
     } else {
         return (
-            <Route path={path} render={props => (
-                <route.component {...props} routes={children}/>
-            )}/>
+            <Route path={path} render={props => {
+                document.title = title ? title : 'yaeSakura';
+                return <route.component {...props} routes={children}/>
+            }}/>
         )
     }
 };
