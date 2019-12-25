@@ -69,6 +69,9 @@ pre {
 .layout-right{
     grid-area:right;
 }
+.layout-content{
+    border-top: 1px solid #eaecef;
+}
 .form-textarea{
     resize: none;
     outline: 0;
@@ -92,4 +95,15 @@ pre {
 .layout-alpha .z-scroll{
     height: calc(100vh - 5rem - 1px);
     overflow: auto;
+}
+.comp-code-alpha{
+    display: flex;
+}
+.comp-code-alpha .code,
+.comp-code-alpha .effect{
+    flex: 1;
+    padding: 1rem;
+}
+.comp-code-alpha .effect{
+    border-left: 1px solid #eaecef;
 }

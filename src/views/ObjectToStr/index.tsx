@@ -46,12 +46,10 @@ const ObjectToStr: React.FC = () => {
     };
 
     return (
-        <>
-            <Alpha
-                title="obejct 对象转换成查询字符串"
-                right={renderInput()}
-                left={renderContent()}/>
-        </>
+        <Alpha
+            title="obejct 对象转换成查询字符串"
+            right={renderInput()}
+            left={renderContent()}/>
     );
 };
 
