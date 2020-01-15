@@ -15,7 +15,7 @@ interface Iprops {
 }
 
 const RouteRender: React.FC<RouteType> = route => {
-    const {path,title, children = [], to = ''} = route;
+    const {path, title, children = [], to = ''} = route;
     if (path === "/") {
         return (
             <Route path="/" exact render={() => (
