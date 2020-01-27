@@ -197,7 +197,7 @@ const Selection: React.FC = () => {
     };
 
     return (
-        <Beta title="Selection 对象示例" content={render()}/>
+        <Beta title="Range 对象示例" content={render()}/>
     )
 };
 
