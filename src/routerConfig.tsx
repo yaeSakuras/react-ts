@@ -4,6 +4,7 @@ const Home = React.lazy(() => import('./views/Home'));
 const JsonView = React.lazy(() => import('./views/JsonView'));
 const UrlStrToObj = React.lazy(() => import('./views/UrlStrToObj'));
 const ObjectToStr = React.lazy(() => import('./views/ObjectToStr'));
+const Range = React.lazy(() => import('./views/Range'));
 const Selection = React.lazy(() => import('./views/Selection'));
 
 interface RouteType {
@@ -40,6 +41,11 @@ const routes: RouteType[] = [
         path: '/objtostr',
         title: 'obejct 对象转换成查询字符串',
         component: ObjectToStr
+    },
+    {
+        path: '/range',
+        title: 'Range 对象示例',
+        component: Range
     },
     {
         path: '/selection',
