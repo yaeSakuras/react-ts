@@ -172,13 +172,13 @@ const Selection: React.FC = () => {
                 <div>
                     result:<span id="result" />
                 </div>
-                <div style={{ marginTop:'10px' }}>
-                    <button style={{ marginLeft:'10px' }} onClick={methods.deleteContents} className="ui-button ui-button-primary" id="button">deleteContents</button>
-                    <button style={{ marginLeft:'10px' }} onClick={methods.extractContents} className="ui-button ui-button-primary" id="button">extractContents</button>
-                    <button style={{ marginLeft:'10px' }} onClick={methods.cloneContents} className="ui-button ui-button-primary" id="button">cloneContents</button>
-                    <button style={{ marginLeft:'10px' }} onClick={methods.insertNode} className="ui-button ui-button-primary" id="button">insertNode</button>
-                    <button style={{ marginLeft:'10px' }} onClick={methods.surroundContents} className="ui-button ui-button-primary" id="button">surroundContents</button>
-                    <button style={{ marginLeft:'10px' }} onClick={methods.resetExample} className="ui-button ui-button-primary" id="button">reset</button>
+                <div>
+                    <button style={{ margin:'10px 10px 0 0' }} onClick={methods.deleteContents} className="ui-button ui-button-primary" id="button">deleteContents</button>
+                    <button style={{ margin:'10px 10px 0 0' }} onClick={methods.extractContents} className="ui-button ui-button-primary" id="button">extractContents</button>
+                    <button style={{ margin:'10px 10px 0 0' }} onClick={methods.cloneContents} className="ui-button ui-button-primary" id="button">cloneContents</button>
+                    <button style={{ margin:'10px 10px 0 0' }} onClick={methods.insertNode} className="ui-button ui-button-primary" id="button">insertNode</button>
+                    <button style={{ margin:'10px 10px 0 0' }} onClick={methods.surroundContents} className="ui-button ui-button-primary" id="button">surroundContents</button>
+                    <button style={{ margin:'10px 10px 0 0' }} onClick={methods.resetExample} className="ui-button ui-button-primary" id="button">reset</button>
                 </div>
             </>
         )
