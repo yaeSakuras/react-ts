@@ -189,7 +189,6 @@ const Selection: React.FC = () => {
             <>
                 <div className="comp-code-alpha" style={{padding: "1rem",display:'block'}}>
                     <Rectangle left={caseLeft1()} right={caseRight1()}/>
-                    <div style={{ marginTop:'1rem' }}/>
                     <Rectangle left={caseLeft2()} right={caseRight2()}/>
                 </div>
             </>

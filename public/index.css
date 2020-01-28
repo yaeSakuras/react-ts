@@ -109,6 +109,7 @@ pre {
 }
 .layout-rectangle{
     width: 100%;
+    margin-bottom: 1rem;
     display: flex;
     border: 1px solid #eaecef;
     border-radius: 4px;
@@ -172,4 +173,20 @@ pre {
 .ui-button-primary:not(.disabled):active {
     background-color: #0057c3;
     border-color: #0057c3;
+}
+
+.ui-textarea>textarea, textarea.ui-textarea {
+    line-height: 20px;
+    padding: 9px 8px;
+    border: 1px solid #d0d0d5;
+    border-radius: 4px;
+    background-color: #fff;
+    outline: 0;
+    color: #4c5161;
+    font-size: 14px;
+    transition: border-color .15s,background-color .15s;
+    word-break: break-all;
+    vertical-align: top;
+    resize: none;
+    overflow: auto;
 }

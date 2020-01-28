@@ -5,136 +5,198 @@ import Beta from "../../layout/Beta";
 import Rectangle from "../../layout/Rectangle";
 
 const str1 = `
-<p id="p">Example: <i>italic</i> and <b>bold</b></p>
-From <input id="start" type="number" value=1> – To <input id="end" type="number" value=4>
-<button id="button">Click to select</button>
+<p id="p">Select me: <i>italic</i> and <b>bold</b></p>
+
 <script>
-  button.onclick = () => {
-    let range = new Range();
-
-    range.setStart(p, start.value);
-    range.setEnd(p, end.value);
-
-    // 应用选区，后文有解释
-    document.getSelection().removeAllRanges();
-    document.getSelection().addRange(range);
-  };
+// 从 <p> 的第 0 个子节点中选择到最后一个子节点
+document.getSelection().setBaseAndExtent(p, 0, p, p.childNodes.length);
 </script>`;
 
 const str2 = `
-<p id="p">Example: <i>italic</i> and <b>bold</b></p>
+<p id="p">Select me: <i>italic</i> and <b>bold</b></p>
 
-<p id="result"></p>
+From <input id="from" disabled> – To <input id="to" disabled>
 <script>
-  let range = new Range();
+  document.onselectionchange = function() {
+    let {anchorNode, anchorOffset, focusNode, focusOffset} = document.getSelection();
 
-  // 下面演示上述的各个方法：
-  let methods = {
-    deleteContents() {
-      range.deleteContents()
-    },
-    extractContents() {
-      let content = range.extractContents();
-      result.innerHTML = "";
-      result.append("extracted: ", content);
-    },
-    cloneContents() {
-      let content = range.cloneContents();
-      result.innerHTML = "";
-      result.append("cloned: ", content);
-    },
-    insertNode() {
-      let newNode = document.createElement('u');
-      newNode.innerHTML = "NEW NODE";
-      range.insertNode(newNode);
-    },
-    surroundContents() {
-      let newNode = document.createElement('u');
-      try {
-        range.surroundContents(newNode);
-      } catch(e) { alert(e) }
-    },
-    resetExample() {
-      p.innerHTML = \`Example: <i>italic</i> and <b>bold</b>\`;
-      result.innerHTML = "";
-
-      range.setStart(p, 1);
-      range.setEnd(p, 2);
-
-      window.getSelection().removeAllRanges();
-      window.getSelection().addRange(range);
-    }
+    from.value = \`\${anchorNode && anchorNode.data}:\${anchorOffset}\`;
+    to.value = \`\${focusNode && focusNode.data}:\${focusOffset}\`;
   };
-
-  for(let method in methods) {
-    document.write(\`<div><button onclick="methods.\${method}()">\${method}</button></div>\`);
-  }
-
-  methods.resetExample();
 </script>
 `;
 
-let result:any;
-const range = new Range();
+const str3 = `
+<p id="p">Select me: <i>italic</i> and <b>bold</b></p>
+
+Cloned: <span id="cloned"></span>
+<br>
+As text: <span id="astext"></span>
+
+<script>
+  document.onselectionchange = function() {
+    let selection = document.getSelection();
+
+    cloned.innerHTML = astext.innerHTML = "";
+
+    // 从范围复制 DOM 节点（这里我们支持多选）
+    for (let i = 0; i < selection.rangeCount; i++) {
+      cloned.append(selection.getRangeAt(i).cloneContents());
+    }
+
+    // 以文本形式获取
+    astext.innerHTML += selection;
+  };
+</script>
+`;
+
+const str4 = `
+<textarea id="area" style="width:80%;height:60px">
+Selecting in this text updates values below.
+</textarea>
+<br>
+From <input id="from" disabled> – To <input id="to" disabled>
+
+<script>
+  area.onselect = function() {
+    from.value = area.selectionStart;
+    to.value = area.selectionEnd;
+  };
+</script>
+`;
+
+const str5 = `
+<textarea id="area" style="width:80%;height:60px">
+Focus on me, the cursor will be at position 10.
+</textarea>
+
+<script>
+  area.onfocus = () => {
+    // 将 setTimeout 设为零延迟，以便在浏览器“焦点”操作完成后运行
+    setTimeout(() => {
+      // 我们可以设置任何选区
+      // 如果 start=end，则将光标精确定位在该位置
+      area.selectionStart = area.selectionEnd = 10;
+    });
+  };
+</script>
+`;
+
+const str6 =`
+<input id="input" style="width:200px" value="Select here and click the button">
+<button id="button">Wrap selection in stars *...*</button>
+
+<script>
+button.onclick = () => {
+  if (input.selectionStart === input.selectionEnd) {
+    return; // 什么都没选
+  }
+
+  let selected = input.value.slice(input.selectionStart, input.selectionEnd);
+  input.setRangeText(\`*\${selected}*\`);
+};
+</script>`;
+
+const str7 =`
+<input id="input" style="width:200px" value="Replace THIS in text">
+<button id="button">Replace THIS</button>
+
+<script>
+button.onclick = () => {
+  let pos = input.value.indexOf("THIS");
+  if (pos >= 0) {
+    input.setRangeText("*THIS*", pos, pos + 4, "select");
+    input.focus(); // 选中它，使选区可见
+  }
+};
+</script>`;
+
+const str8 = `
+<input id="input" style="width:200px" value="Text Text Text Text Text">
+<button id="button">Insert "HELLO" at cursor</button>
+
+<script>
+  button.onclick = () => {
+    input.setRangeText("HELLO", input.selectionStart, input.selectionEnd, "end");
+    input.focus();
+  };
+</script>
+`;
 
 const Selection: React.FC = () => {
 
     useEffect(() => {
-        setTimeout(()=> {
-            methods.resetExample();
-        },100)
+        setTimeout(() => {
+            const selection: any = document.getSelection();
+            const p: any = document.querySelector('#p');
+            const from: any = document.querySelector('#from');
+            const to: any = document.querySelector('#to');
+            const from1: any = document.querySelector('#from1');
+            const to1: any = document.querySelector('#to1');
+            const cloned: any = document.querySelector('#cloned');
+            const astext: any = document.querySelector('#astext');
+            const area: any = document.querySelector('#area');
+            const area1: any = document.querySelector('#area1');
+            const button: any = document.querySelector('#button');
+            const button1: any = document.querySelector('#button1');
+            const button2: any = document.querySelector('#button2');
+            const input: any = document.querySelector('#input');
+            const input1: any = document.querySelector('#input1');
+            const input2: any = document.querySelector('#input2');
+            selection.setBaseAndExtent(p, 0, p, p.childNodes.length);
+
+            document.onselectionchange = function() {
+                let selection:any = document.getSelection();
+                // @ts-ignore
+                let {anchorNode, anchorOffset, focusNode, focusOffset} = selection;
+                from.value = `${anchorNode && anchorNode.data}:${anchorOffset}`;
+                to.value = `${focusNode && focusNode.data}:${focusOffset}`;
+
+                cloned.innerHTML = astext.innerHTML = "";
+
+                // 从范围复制 DOM 节点（这里我们支持多选）
+                for (let i = 0; i < selection.rangeCount; i++) {
+                    cloned.append(selection.getRangeAt(i).cloneContents());
+                }
+
+                // 以文本形式获取
+                astext.innerHTML += selection;
+            };
+            area.onselect = function() {
+                from1.value = area.selectionStart;
+                to1.value = area.selectionEnd;
+            };
+
+            area1.onfocus = () => {
+                // 将 setTimeout 设为零延迟，以便在浏览器“焦点”操作完成后运行
+                setTimeout(() => {
+                    // 我们可以设置任何选区
+                    // 如果 start=end，则将光标精确定位在该位置
+                    area1.selectionStart = area1.selectionEnd = 10;
+                });
+            };
+
+            button.onclick = () => {
+                if (input.selectionStart == input.selectionEnd) {
+                    return; // 什么都没选
+                }
+                let selected = input.value.slice(input.selectionStart, input.selectionEnd);
+                input.setRangeText(`*${selected}*`);
+            };
+            button1.onclick = () => {
+                let pos = input1.value.indexOf("THIS");
+                if (pos >= 0) {
+                    input1.setRangeText("*THIS*", pos, pos + 4, "select");
+                    input1.focus(); // 选中它，使选区可见
+                }
+            };
+
+            button2.onclick = () => {
+                input2.setRangeText("VALUE", input2.selectionStart, input2.selectionEnd, "end");
+                input2.focus();
+            };
+        }, 200);
     });
-
-    const methods = {
-        deleteContents() {
-            range.deleteContents()
-        },
-        extractContents() {
-            let content = range.extractContents();
-            result.innerHTML = "";
-            result.append("extracted: ", content);
-        },
-        cloneContents() {
-            let content = range.cloneContents();
-            result.innerHTML = "";
-            result.append("cloned: ", content);
-        },
-        insertNode() {
-            let newNode = document.createElement('u');
-            newNode.innerHTML = "NEW NODE";
-            range.insertNode(newNode);
-        },
-        surroundContents() {
-            let newNode = document.createElement('u');
-            try {
-                range.surroundContents(newNode);
-            } catch(e) { alert(e) }
-        },
-        resetExample() {
-            const selection:any = window.getSelection();
-            const p:any = document.querySelector("#p2");
-            result = document.querySelector('#result');
-            p.innerHTML = `Example: <i>italic</i> and <b>bold</b>`;
-            result.innerHTML = "";
-            range.setStart(p, 1);
-            range.setEnd(p, 2);
-
-            selection.removeAllRanges();
-            selection.addRange(range);
-        }
-    };
-
-    const onCase1 = ()=> {
-        let range = new Range();
-        const selection:any = document.getSelection();
-        const p1 = document.querySelector("#p1") as HTMLElement;
-        const start:any = document.querySelector("#start") as HTMLElement;
-        const end:any = document.querySelector("#end") as HTMLElement;
-        range.setStart(p1, start.value);
-        range.setEnd(p1, end.value);
-        selection.removeAllRanges();
-        selection.addRange(range);
-    };
 
     const caseLeft1 = () => {
         return (
@@ -143,6 +205,14 @@ const Selection: React.FC = () => {
                     str1
                 }
             </SyntaxHighlighter>
+        )
+    };
+    const caseRight1 = () => {
+        return (
+            <>
+                <h3>选区选择示例</h3>
+                <p id="p">Select me: <i>italic</i> and <b>bold</b></p>
+            </>
         )
     };
     const caseLeft2 = () => {
@@ -154,31 +224,143 @@ const Selection: React.FC = () => {
             </SyntaxHighlighter>
         )
     };
-    const caseRight1 = () => {
+    const caseRight2 = () => {
         return (
             <>
-                <p id="p1">Example: <i>italic</i> and <b>bold</b></p>
-                From <input style={{ marginLeft:'10px' }} className="ui-input" id="start" type="number"/> – To
-                <input style={{ marginLeft:'10px' }} className="ui-input" id="end" type="number"/>
-                <button style={{ marginLeft:'10px' }} onClick={onCase1} className="ui-button ui-button-primary" id="button">点击选择范围</button>
+                <h3>选区跟踪示例</h3>
+                <p id="p1">Select me: <i>italic</i> and <b>bold</b></p>
+                <div>
+                    From <input style={{marginLeft: '10px'}} className="ui-input" id="from" disabled/> – To
+                    <input style={{marginLeft: '10px'}} className="ui-input" id="to" disabled/>
+                </div>
             </>
         )
     };
 
-    const caseRight2 = () => {
+    const caseLeft3 = () => {
+        return (
+            <SyntaxHighlighter language="html" style={docco}>
+                {
+                    str3
+                }
+            </SyntaxHighlighter>
+        )
+    };
+
+    const caseRight3 = () => {
         return (
             <>
-                <p id="p2">Example: <i>italic</i> and <b>bold</b></p>
-                <div>
-                    result:<span id="result" />
+                <h3>选区获取示例</h3>
+                <p id="p2">Select me: <i>italic</i> and <b>bold</b></p>
+                <div>Cloned: <span id="cloned" /></div>
+                <div>As text: <span id="astext" /></div>
+            </>
+        )
+    };
+
+    const caseLeft4 = () => {
+        return (
+            <SyntaxHighlighter language="html" style={docco}>
+                {
+                    str4
+                }
+            </SyntaxHighlighter>
+        )
+    };
+
+    const caseRight4 = () => {
+        return (
+            <>
+                <h3>跟踪选区示例</h3>
+                <textarea style={{marginTop:"1rem"}} className="ui-textarea" id="area">Selecting in this text updates values below.</textarea>
+                <div style={{marginTop:"1rem"}}>
+                    From <input style={{marginLeft: '10px'}} className="ui-input" id="from1" disabled/> – To
+                    <input style={{marginLeft: '10px'}} className="ui-input" id="to1" disabled/>
                 </div>
-                <div style={{ marginTop:'10px' }}>
-                    <button style={{ marginLeft:'10px' }} onClick={methods.deleteContents} className="ui-button ui-button-primary" id="button">deleteContents</button>
-                    <button style={{ marginLeft:'10px' }} onClick={methods.extractContents} className="ui-button ui-button-primary" id="button">extractContents</button>
-                    <button style={{ marginLeft:'10px' }} onClick={methods.cloneContents} className="ui-button ui-button-primary" id="button">cloneContents</button>
-                    <button style={{ marginLeft:'10px' }} onClick={methods.insertNode} className="ui-button ui-button-primary" id="button">insertNode</button>
-                    <button style={{ marginLeft:'10px' }} onClick={methods.surroundContents} className="ui-button ui-button-primary" id="button">surroundContents</button>
-                    <button style={{ marginLeft:'10px' }} onClick={methods.resetExample} className="ui-button ui-button-primary" id="button">reset</button>
+            </>
+        )
+    };
+
+    const caseLeft5 = () => {
+        return (
+            <SyntaxHighlighter language="html" style={docco}>
+                {
+                    str5
+                }
+            </SyntaxHighlighter>
+        )
+    };
+
+    const caseRight5 = () => {
+        return (
+            <>
+                <h3>移动光标示例</h3>
+                <textarea style={{marginTop:"1rem",width:'80%'}} className="ui-textarea" id="area1">Focus on me, the cursor will be at position 10.</textarea>
+            </>
+        )
+    };
+
+    const caseLeft6 = () => {
+        return (
+            <SyntaxHighlighter language="html" style={docco}>
+                {
+                    str6
+                }
+            </SyntaxHighlighter>
+        )
+    };
+
+    const caseRight6 = () => {
+        return (
+            <>
+                <h3>修改选区示例</h3>
+                <input style={{ marginTop:"1rem",width:"50%" }} className="ui-input" id="input" value="Select here and click the button" />
+                <div style={{ marginTop:"1rem" }}>
+                    <button className="ui-button ui-button-primary" id="button">Wrap selection in stars *...*</button>
+                </div>
+            </>
+        )
+    };
+
+    const caseLeft7 = () => {
+        return (
+            <SyntaxHighlighter language="html" style={docco}>
+                {
+                    str7
+                }
+            </SyntaxHighlighter>
+        )
+    };
+
+    const caseRight7 = () => {
+        return (
+            <>
+                <h3>选区替换示例</h3>
+                <input style={{ marginTop:"1rem",width:"50%" }} className="ui-input" id="input1" value="Replace THIS in text" />
+                <div style={{ marginTop:"1rem" }}>
+                    <button className="ui-button ui-button-primary" id="button1">Replace THIS</button>
+                </div>
+            </>
+        )
+    };
+
+    const caseLeft8 = () => {
+        return (
+            <SyntaxHighlighter language="html" style={docco}>
+                {
+                    str8
+                }
+            </SyntaxHighlighter>
+        )
+    };
+
+    const caseRight8 = () => {
+        return (
+            <>
+                <h3>光标插入</h3>
+                <input style={{ marginTop:"1rem",width:"50%" }} className="ui-input" id="input2" value="Text Text Text Text Text" />
+                <div style={{ marginTop:"1rem" }}>
+                    <button className="ui-button ui-button-primary" id="button2">Insert "VALUE" at cursor</button>
                 </div>
             </>
         )
@@ -187,10 +369,15 @@ const Selection: React.FC = () => {
     const render = () => {
         return (
             <>
-                <div className="comp-code-alpha" style={{padding: "1rem",display:'block'}}>
+                <div className="comp-code-alpha" style={{padding: "1rem", display: 'block'}}>
                     <Rectangle left={caseLeft1()} right={caseRight1()}/>
-                    <div style={{ marginTop:'1rem' }}/>
                     <Rectangle left={caseLeft2()} right={caseRight2()}/>
+                    <Rectangle left={caseLeft3()} right={caseRight3()}/>
+                    <Rectangle left={caseLeft4()} right={caseRight4()}/>
+                    <Rectangle left={caseLeft5()} right={caseRight5()}/>
+                    <Rectangle left={caseLeft6()} right={caseRight6()}/>
+                    <Rectangle left={caseLeft7()} right={caseRight7()}/>
+                    <Rectangle left={caseLeft8()} right={caseRight8()}/>
                 </div>
             </>
         )
