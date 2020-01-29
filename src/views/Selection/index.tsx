@@ -177,7 +177,7 @@ const Selection: React.FC = () => {
             };
 
             button.onclick = () => {
-                if (input.selectionStart == input.selectionEnd) {
+                if (input.selectionStart === input.selectionEnd) {
                     return; // 什么都没选
                 }
                 let selected = input.value.slice(input.selectionStart, input.selectionEnd);
