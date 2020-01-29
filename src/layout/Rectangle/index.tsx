@@ -5,7 +5,7 @@ interface Iprops {
     right: ReactElement
 }
 
-const Rectangle:React.FC<Iprops> = props => {
+const Rectangle = (props: Iprops) => {
     const {left,right} = props;
     return (
         <div className="layout-rectangle">
@@ -13,6 +13,6 @@ const Rectangle:React.FC<Iprops> = props => {
             <div className="right">{right}</div>
         </div>
     )
-}
+};
 
 export default Rectangle;

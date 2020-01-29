@@ -1,6 +1,7 @@
 import React, {LazyExoticComponent} from "react";
 
 const Home = React.lazy(() => import('./views/Home'));
+const Test = React.lazy(() => import('./views/Test'));
 const JsonView = React.lazy(() => import('./views/JsonView'));
 const UrlStrToObj = React.lazy(() => import('./views/UrlStrToObj'));
 const ObjectToStr = React.lazy(() => import('./views/ObjectToStr'));
@@ -26,6 +27,11 @@ const routes: RouteType[] = [
         path: '/home',
         title: '主页',
         component: Home,
+    },
+    {
+        path: '/test',
+        title: '测试',
+        component: Test,
     },
     {
         path: '/jsonview',

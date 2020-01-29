@@ -14,7 +14,7 @@ interface Iprops {
     routes: RouteType[]
 }
 
-const RouteRender: React.FC<RouteType> = route => {
+const RouteRender = (route:RouteType) => {
     const {path, title, children = [], to = ''} = route;
     if (path === "/") {
         return (
@@ -32,7 +32,7 @@ const RouteRender: React.FC<RouteType> = route => {
     }
 };
 
-const RouteWithSubRoutes: React.FC<Iprops> = props => {
+const RouteWithSubRoutes = (props:Iprops) => {
     const {routes} = props;
     return (
         <>
