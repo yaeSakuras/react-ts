@@ -39,7 +39,8 @@ pre {
     white-space: pre-wrap;
     word-wrap: break-word;
 }
-.layout-grid{
+
+.layout-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 3rem calc(100vh - 3rem - 1px);
@@ -47,32 +48,39 @@ pre {
     grid-gap: 1px 1px;
     background-color: #eaecef;
 }
+
 .layout-hader,
 .layout-left,
-.layout-right{
+.layout-right {
     background-color: #fff;
 }
+
 .layout-left,
-.layout-right{
+.layout-right {
     padding: 1rem;
 }
-.layout-hader{
+
+.layout-hader {
     grid-area: header;
     font-weight: 600;
     line-height: 3rem;
     padding: 0 1rem;
     color: #2c3e50;
 }
-.layout-left{
-    grid-area:left;
+
+.layout-left {
+    grid-area: left;
 }
-.layout-right{
-    grid-area:right;
+
+.layout-right {
+    grid-area: right;
 }
-.layout-content{
+
+.layout-content {
     border-top: 1px solid #eaecef;
 }
-.form-textarea{
+
+.form-textarea {
     resize: none;
     outline: 0;
     width: 100%;
@@ -84,30 +92,36 @@ pre {
     border: 1px solid #d0d0d5;
     box-sizing: border-box;
     background-color: #fff;
-    transition: border-color .15s,background-color .15s;
+    transition: border-color .15s, background-color .15s;
 }
-.form-textarea:focus{
+
+.form-textarea:focus {
     color: #2c3e50;
     border-color: #2486ff;
-    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(36,134,255,.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(36, 134, 255, .6);
 }
+
 .layout-alpha .form-textarea,
-.layout-alpha .z-scroll{
+.layout-alpha .z-scroll {
     height: calc(100vh - 5rem - 1px);
     overflow: auto;
 }
-.comp-code-alpha{
+
+.comp-code-alpha {
     display: flex;
 }
+
 .comp-code-alpha .code,
-.comp-code-alpha .effect{
+.comp-code-alpha .effect {
     flex: 1;
     padding: 1rem;
 }
-.comp-code-alpha .effect{
+
+.comp-code-alpha .effect {
     border-left: 1px solid #eaecef;
 }
-.layout-rectangle{
+
+.layout-rectangle {
     width: 100%;
     margin-bottom: 1rem;
     display: flex;
@@ -116,14 +130,16 @@ pre {
 }
 
 .layout-rectangle .left,
-.layout-rectangle .right{
+.layout-rectangle .right {
     padding: 1rem;
     flex: 1;
 }
-.layout-rectangle .left{
+
+.layout-rectangle .left {
     border-right: 1px solid #eaecef;
 }
-.ui-input>input, input.ui-input{
+
+.ui-input > input, input.ui-input {
     height: 20px;
     line-height: 20px;
     padding: 9px 8px;
@@ -133,15 +149,18 @@ pre {
     font-size: 14px;
     outline: 0;
     color: #4c5161;
-    transition: border-color .15s,background-color .15s;
+    transition: border-color .15s, background-color .15s;
 }
-.ui-input:hover, .ui-input:hover>input {
+
+.ui-input:hover, .ui-input:hover > input {
     border-color: #ababaf;
 }
-.ui-input:focus, .ui-input>input:focus {
+
+.ui-input:focus, .ui-input > input:focus {
     border-color: #2486ff;
 }
-.ui-button{
+
+.ui-button {
     display: inline-block;
     line-height: 20px;
     font-size: 14px;
@@ -155,27 +174,30 @@ pre {
     background-repeat: no-repeat;
     background-position: center;
     text-decoration: none;
-    transition: border-color .15s,background-color .15s,opacity .15s;
+    transition: border-color .15s, background-color .15s, opacity .15s;
     cursor: pointer;
     overflow: visible;
 }
+
 .ui-button-primary,
 .ui-button-primary.disabled:hover {
     border: 1px solid #2486ff;
     background-color: #2486ff;
     color: #fff;
 }
+
 .ui-button-primary:hover {
     background-color: #0160d5;
     border-color: #0160d5;
     color: #fff;
 }
+
 .ui-button-primary:not(.disabled):active {
     background-color: #0057c3;
     border-color: #0057c3;
 }
 
-.ui-textarea>textarea, textarea.ui-textarea {
+.ui-textarea > textarea, textarea.ui-textarea {
     line-height: 20px;
     padding: 9px 8px;
     border: 1px solid #d0d0d5;
@@ -184,9 +206,34 @@ pre {
     outline: 0;
     color: #4c5161;
     font-size: 14px;
-    transition: border-color .15s,background-color .15s;
+    transition: border-color .15s, background-color .15s;
     word-break: break-all;
     vertical-align: top;
     resize: none;
     overflow: auto;
+}
+
+.layout-practice {
+    padding: 2rem 4rem;
+}
+
+.layout-practice .practice-tile {
+    font-size: 20px;
+    color: #2c3e50;
+}
+
+.layout-practice .practice-conent {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-rows: 40px 40px 40px 40px 40px;
+}
+
+.layout-practice .practice-item {
+    cursor: pointer;
+    color: #2486ff;
+    line-height: 40px;
+}
+
+.layout-practice .practice-item:hover {
+    text-decoration: underline;
 }

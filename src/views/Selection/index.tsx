@@ -272,7 +272,7 @@ const Selection: React.FC = () => {
         return (
             <>
                 <h3>跟踪选区示例</h3>
-                <textarea style={{marginTop:"1rem"}} className="ui-textarea" id="area">Selecting in this text updates values below.</textarea>
+                <textarea style={{marginTop:"1rem"}} className="ui-textarea" id="area" defaultValue="Selecting in this text updates values below."/>
                 <div style={{marginTop:"1rem"}}>
                     From <input style={{marginLeft: '10px'}} className="ui-input" id="from1" disabled/> – To
                     <input style={{marginLeft: '10px'}} className="ui-input" id="to1" disabled/>
@@ -295,7 +295,7 @@ const Selection: React.FC = () => {
         return (
             <>
                 <h3>移动光标示例</h3>
-                <textarea style={{marginTop:"1rem",width:'80%'}} className="ui-textarea" id="area1">Focus on me, the cursor will be at position 10.</textarea>
+                <textarea style={{marginTop:"1rem",width:'80%'}} className="ui-textarea" id="area1" defaultValue="Focus on me, the cursor will be at position 10." />
             </>
         )
     };
@@ -314,7 +314,7 @@ const Selection: React.FC = () => {
         return (
             <>
                 <h3>修改选区示例</h3>
-                <input style={{ marginTop:"1rem",width:"50%" }} className="ui-input" id="input" value="Select here and click the button" />
+                <input style={{ marginTop:"1rem",width:"50%" }} className="ui-input" id="input" defaultValue="Select here and click the button" />
                 <div style={{ marginTop:"1rem" }}>
                     <button className="ui-button ui-button-primary" id="button">Wrap selection in stars *...*</button>
                 </div>
@@ -336,7 +336,7 @@ const Selection: React.FC = () => {
         return (
             <>
                 <h3>选区替换示例</h3>
-                <input style={{ marginTop:"1rem",width:"50%" }} className="ui-input" id="input1" value="Replace THIS in text" />
+                <input style={{ marginTop:"1rem",width:"50%" }} className="ui-input" id="input1" defaultValue="Replace THIS in text" />
                 <div style={{ marginTop:"1rem" }}>
                     <button className="ui-button ui-button-primary" id="button1">Replace THIS</button>
                 </div>
@@ -358,7 +358,7 @@ const Selection: React.FC = () => {
         return (
             <>
                 <h3>光标插入</h3>
-                <input style={{ marginTop:"1rem",width:"50%" }} className="ui-input" id="input2" value="Text Text Text Text Text" />
+                <input style={{ marginTop:"1rem",width:"50%" }} className="ui-input" id="input2" defaultValue="Text Text Text Text Text" />
                 <div style={{ marginTop:"1rem" }}>
                     <button className="ui-button ui-button-primary" id="button2">Insert "VALUE" at cursor</button>
                 </div>
