@@ -10,11 +10,11 @@ import Cat6 from "../../../assets/images/cat6.jpg";
 
 const Css17 = () => {
     const img = <>
-            <img width="242" src={Cat6} alt="image"/>
-            <img width="121" src={Cat1} alt="image"/>
-            <img width="121" src={Cat2} alt="image"/>
-            <img width="121" src={Cat3} alt="image"/>
-            <img width="121" src={Cat4} alt="image"/>
+            <img width="242" src={Cat6} alt="cat"/>
+            <img width="121" src={Cat1} alt="cat"/>
+            <img width="121" src={Cat2} alt="cat"/>
+            <img width="121" src={Cat3} alt="cat"/>
+            <img width="121" src={Cat4} alt="cat"/>
         </>;
 
     return (
