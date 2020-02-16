@@ -7,6 +7,12 @@ const Practice = () => {
         const arr = [{
             href: "/#/dom43",
             title: "DOM43"
+        },{
+            href: "/#/js43",
+            title: "JS43"
+        },{
+            href: "/#/css17",
+            title: "CSS17"
         }]
         return (
             <div className="layout-practice">

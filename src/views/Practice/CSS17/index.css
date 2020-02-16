@@ -1,0 +1,11 @@
+.box1{
+    height: 242px;
+    writing-mode: vertical-lr;
+}
+.box2{
+    height: 242px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-content: baseline;
+}
