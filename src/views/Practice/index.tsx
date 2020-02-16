@@ -10,13 +10,13 @@ const Practice = () => {
     const racticeAlpha = () => {
         const arr = [{
             href: url2Link("dom43"),
-            title: "DOM43"
+            title: "DOM基础测试43期"
         },{
             href: url2Link("js43"),
-            title: "JS43"
+            title: "JS基础测试43期"
         },{
             href: url2Link("css17"),
-            title: "CSS17"
+            title: "CSS基础测试17期"
         }]
         console.log(arr)
         return (

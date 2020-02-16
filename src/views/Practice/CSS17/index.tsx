@@ -20,7 +20,7 @@ const Css17 = () => {
     return (
         <div>
             <a rel="noopener noreferrer" href="https://github.com/zhangxinxu/quiz/issues/60"
-               target="_blank">CSS基础测试17地址</a>
+               target="_blank">CSS基础测试17期地址</a>
             <h2>writing-mode</h2>
             <div className="box1">{img}</div>
             <SyntaxHighlighter language="css" style={docco}>

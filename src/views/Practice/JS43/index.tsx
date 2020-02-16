@@ -34,7 +34,7 @@ console.log(arr2)
 const Js43 = () => {
     return (
         <div>
-            <a rel="noopener noreferrer" href="https://github.com/zhangxinxu/quiz/issues/61" target="_blank">js43地址</a>
+            <a rel="noopener noreferrer" href="https://github.com/zhangxinxu/quiz/issues/61" target="_blank">JS基础测试43期</a>
             <SyntaxHighlighter language="javascript" style={docco}>
                 {
                     `const data = [
