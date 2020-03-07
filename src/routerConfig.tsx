@@ -7,10 +7,7 @@ const UrlStrToObj = React.lazy(() => import('./views/UrlStrToObj'));
 const ObjectToStr = React.lazy(() => import('./views/ObjectToStr'));
 const Range = React.lazy(() => import('./views/Range'));
 const Selection = React.lazy(() => import('./views/Selection'));
-const Practice = React.lazy(() => import('./views/Practice'));
-const DOM43 = React.lazy(() => import('./views/Practice/DOM43'));
-const JS43 = React.lazy(() => import('./views/Practice/JS43'));
-const CSS17 = React.lazy(() => import('./views/Practice/CSS17'));
+const GetDerivedStateFromProps = React.lazy(() => import('./views/GetDerivedStateFromProps'));
 
 interface RouteType {
     path: string;
@@ -31,11 +28,6 @@ const routes: RouteType[] = [
         path: '/home',
         title: '主页',
         component: Home,
-    },
-    {
-        path: '/practice',
-        title: '练习',
-        component: Practice,
     },
     {
         path: '/test',
@@ -68,19 +60,9 @@ const routes: RouteType[] = [
         component: Selection
     },
     {
-        path: '/dom43',
-        title: 'dom43',
-        component: DOM43,
-    },
-    {
-        path: '/js43',
-        title: 'js43',
-        component: JS43,
-    },
-    {
-        path: '/css17',
-        title: 'css17',
-        component: CSS17,
+        path: '/getDerivedStateFromProps',
+        title: 'GetDerivedStateFromProps',
+        component: GetDerivedStateFromProps
     },
 ];
 
