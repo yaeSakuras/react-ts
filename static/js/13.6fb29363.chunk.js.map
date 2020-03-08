@@ -1,0 +1,1 @@
+{"version":3,"sources":["views/Home/index.tsx"],"names":["Home"],"mappings":"6GAAA,2BAQeA,UANQ,WACnB,OACI","file":"static/js/13.6fb29363.chunk.js","sourcesContent":["import React from 'react';\n\nconst Home: React.FC = () => {\n    return (\n        <div>welcome to zzh coding!!!</div>\n    );\n};\n\nexport default Home;\n"],"sourceRoot":""}

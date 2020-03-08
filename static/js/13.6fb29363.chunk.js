@@ -1,0 +1,2 @@
+(this["webpackJsonpreact-ts"]=this["webpackJsonpreact-ts"]||[]).push([[13],{235:function(t,e,n){"use strict";n.r(e);var c=n(0),s=n.n(c);e.default=function(){return s.a.createElement("div",null,"welcome to zzh coding!!!")}}}]);
+//# sourceMappingURL=13.6fb29363.chunk.js.map
