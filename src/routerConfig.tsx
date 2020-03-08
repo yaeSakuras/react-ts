@@ -8,6 +8,7 @@ const ObjectToStr = React.lazy(() => import('./views/ObjectToStr'));
 const Range = React.lazy(() => import('./views/Range'));
 const Selection = React.lazy(() => import('./views/Selection'));
 const GetDerivedStateFromProps = React.lazy(() => import('./views/GetDerivedStateFromProps'));
+const ShouldComponentUpdate = React.lazy(() => import('./views/ShouldComponentUpdate'));
 
 interface RouteType {
     path: string;
@@ -63,6 +64,11 @@ const routes: RouteType[] = [
         path: '/getDerivedStateFromProps',
         title: 'GetDerivedStateFromProps',
         component: GetDerivedStateFromProps
+    },
+    {
+        path: '/shouldComponentUpdate',
+        title: 'ShouldComponentUpdate',
+        component: ShouldComponentUpdate
     },
 ];
 
